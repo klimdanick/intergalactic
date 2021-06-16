@@ -18,6 +18,5 @@ public class MoveIdle : MonoBehaviour
     {
         float a = Mathf.Sin(Time.time * speed) * amplitude;
         gameObject.transform.Translate(0, a, 0);
-        RenderSettings.skybox.SetFloat("_Rotation", Time.time*2);
     }
 }
