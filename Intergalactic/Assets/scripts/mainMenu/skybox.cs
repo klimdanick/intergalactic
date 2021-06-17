@@ -21,6 +21,14 @@ public class skybox : MonoBehaviour
     void Update()
     {
         RenderSettings.skybox.SetFloat("_Rotation", Time.time*5);
+        if (RenderSettings.skybox.GetFloat("_Rotation") >= 180 * (skyboxIndex+1)-30) {
+            float x = (180 * (skyboxIndex+1) - RenderSettings.skybox.GetFloat("_Rotation")) /30;
+            RenderSettings.skybox.SetFloat("_Exposure", x);
+        }
+        else if (RenderSettings.skybox.GetFloat("_Rotation") <= 180 * (skyboxIndex+1)-150) {
+            float x = (180 * (skyboxIndex) - RenderSettings.skybox.GetFloat("_Rotation")) /30;
+            RenderSettings.skybox.SetFloat("_Exposure", -x);
+        } else RenderSettings.skybox.SetFloat("_Exposure", 1);
         if (RenderSettings.skybox.GetFloat("_Rotation") >= 180 * (skyboxIndex+1)) {
             skyboxIndex++;
             RenderSettings.skybox = skyboxen[skyboxIndex%3];
